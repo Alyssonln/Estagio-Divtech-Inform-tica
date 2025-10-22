@@ -1,0 +1,47 @@
+@model FornecedoresApp.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Detalhes do Fornecedor";
+}
+
+<h1>Detalhes do Fornecedor</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Nome)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Nome)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Cnpj)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Cnpj)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Segmento)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Segmento)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Cep)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Cep)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Endereco)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Endereco)</dd>
+
+            <dt class="col-sm-3 fw-bold">Foto</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.FotoPath))
+                {
+                    <img src="@Model.FotoPath" alt="Foto do fornecedor" class="img-thumbnail shadow-sm mt-2"
+                        style="max-width:200px;" />
+                }
+                else
+                {
+                    <span class="text-muted">Sem foto</span>
+                }
+            </dd>
+        </dl>
+
+        <div class="mt-3">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Voltar</a>
+        </div>
+    </div>
+</div>

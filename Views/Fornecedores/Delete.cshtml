@@ -1,0 +1,52 @@
+@model FornecedoresApp.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Excluir Fornecedor";
+}
+
+<h1>Excluir Fornecedor</h1>
+
+<h3 class="text-danger">Tem certeza de que deseja excluir este fornecedor?</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Nome)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Nome)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Cnpj)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Cnpj)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Segmento)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Segmento)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Cep)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Cep)</dd>
+
+            <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Endereco)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Endereco)</dd>
+
+            <dt class="col-sm-3 fw-bold">Foto</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.FotoPath))
+                {
+                    <img src="@Model.FotoPath" alt="Foto do fornecedor" class="img-thumbnail shadow-sm mt-2"
+                        style="max-width:150px;" />
+                }
+                else
+                {
+                    <span class="text-muted">Sem foto</span>
+                }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="mt-3">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex align-items-center">
+                <input type="submit" value="Excluir" class="btn btn-danger me-2" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

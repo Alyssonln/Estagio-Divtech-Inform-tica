@@ -1,0 +1,63 @@
+@model IEnumerable<FornecedoresApp.Models.Fornecedor>
+
+@{
+    ViewData["Title"] = "Fornecedores";
+}
+
+<h1 class="mb-4">Lista de Fornecedores</h1>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-success shadow-sm">+ Novo Fornecedor</a>
+</div>
+
+<table class="table table-striped table-hover align-middle shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.Cnpj)</th>
+            <th>@Html.DisplayNameFor(model => model.Segmento)</th>
+            <th>@Html.DisplayNameFor(model => model.Cep)</th>
+            <th>@Html.DisplayNameFor(model => model.Endereco)</th>
+            <th>Foto</th>
+            <th class="text-center" style="width: 200px;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cnpj)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Segmento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cep)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Endereco)</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.FotoPath))
+                        {
+                            <img src="@item.FotoPath" alt="Foto" class="img-thumbnail shadow-sm" style="max-width:70px;" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">Sem foto</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary me-1">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white me-1">Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center text-muted py-4">
+                    Nenhum fornecedor cadastrado até o momento.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
